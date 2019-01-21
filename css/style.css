@@ -106,3 +106,22 @@ body {
 }
 
 
+
+
+#todo-list li .edit_box {
+    display: none;
+}
+
+#todo-list li  .editing {
+    display: block;
+}
+
+#new-data .hidden{
+    visibility: hidden;
+    height: 0;
+    padding: 0 !important;
+}
+
+#new-data .focused{
+    visibility: visible;
+}
