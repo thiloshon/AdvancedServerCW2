@@ -49,24 +49,24 @@ body {
     text-decoration: line-through;
 }
 
-#todo-list li .edit {
+#todo-list tr .edit {
     display: none;
 }
 #todo-list li.editing {
     border-bottom: 1px solid #778899;
 }
 
-#todo-list li.editing .view {
+#todo-list tr.editing .view {
     display: none;
 }
-#todo-list li.editing .edit {
+#todo-list tr.editing .edit {
     display: block;
     width: 444px;
     padding: 13px 15px 14px 20px;
     margin: 0;
 }
 
-#todo-list li.done label {
+#todo-list tr.done label {
     color: #777777;
     text-decoration: line-through;
 }
@@ -108,11 +108,11 @@ body {
 
 
 
-#todo-list li .edit_box {
+#todo-list tr .edit_box {
     display: none;
 }
 
-#todo-list li  .editing {
+#todo-list tr  .editing {
     display: block;
 }
 

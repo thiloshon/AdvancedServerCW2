@@ -32,7 +32,23 @@
     <section id="main" style="display: block;">
         <input id="toggle-all" type="checkbox"/>
         <label for="toggle-all">Mark all as complete</label>
-        <ul id="todo-list"></ul>
+
+        <table class="table table-dark" id="todo-list">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+
+
     </section>
 
     <footer style="display: block;">
@@ -45,14 +61,16 @@
 
 <script type="text/template" id="item-template">
     <div class="view">
-        <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
-        <label><%- title %></label>
-        <br/>
-        <label><%- price %></label>
-        <br/>
-        <label><%- priority %></label>
-        <br/>
-        <label><%- url %></label>
+        <td scope="row">
+            <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+            <label><%- title %></label>
+        </td>
+        <td> <label><%- price %></label></td>
+        <td><label><%- priority %></label></td>
+        <td><label><%- url %></label></td>
+
+
+
         <a class="destroy"></a>
     </div>
     <!--<input class="edit" type="text" value="<%- title %>"/>-->
