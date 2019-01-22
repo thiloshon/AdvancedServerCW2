@@ -22,9 +22,9 @@ class Authlib
      * @param $conf_pwd
      * @return string
      */
-    public function register($name, $user, $pwd, $conf_pwd)
+    public function register($name, $user, $pwd, $conf_pwd, $wishlist, $wishlist_desc)
     {
-        if ($name == '' || $user == '' || $pwd == '' || $conf_pwd == '') {
+        if ($name == '' || $user == '' || $pwd == '' || $conf_pwd == '' || $wishlist == '' || $wishlist_desc == '') {
             return 'Missing Fields';
         }
 
@@ -32,7 +32,7 @@ class Authlib
             return "Passwords do not match";
         }
 
-        return $this->ci->user_model->register($name, $user, $pwd);
+        return $this->ci->user_model->register($name, $user, $pwd, $wishlist, $wishlist_desc);
     }
 
 

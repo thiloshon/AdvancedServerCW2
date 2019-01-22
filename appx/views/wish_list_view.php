@@ -2,8 +2,15 @@
 <div class="container">
     <div id="todoapp">
         <header>
-            <h1>Todos by Backbone.js</h1>
-            <p>By: <?php echo $this->session->name ?> </p>
+            <span class="row"><h1 class="display-3"><?php echo $this->session->wishlist ?></h1>  <p class="lead"><?php echo $this->session->name ?></p></span>
+
+            <h3>
+                <?php echo $this->session->description ?>
+
+            </h3>
+
+            <hr/>
+
 
             <div id="new-data">
                 <form>
@@ -17,6 +24,8 @@
 
                 </form>
             </div>
+
+            <hr/>
         </header>
 
         <section id="main" style="display: block;">
@@ -59,7 +68,7 @@
     <% if (done) { %>
     <a id="clear-completed">Clear <%= done %> taken <%= done == 1 ? 'wish' : 'wishes' %></a>
     <% } %>
-    <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'wish' : 'wishes' %> left</div>
+
 </script>
 
 

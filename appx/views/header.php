@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Wish-esque!!</title>
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/css/login.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
     <script src="https://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script>
@@ -25,5 +26,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
 
 </head>
-
-<body>

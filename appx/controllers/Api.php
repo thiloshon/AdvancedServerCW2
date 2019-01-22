@@ -19,6 +19,7 @@ class Api extends \Restserver\Libraries\REST_Controller
         }
 
         $result = $this->wish_model->get_wish($username);
+
         if ($result) {
             $this->response($result, 200);
             exit;

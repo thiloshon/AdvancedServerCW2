@@ -1,8 +1,7 @@
 body {
-    font-size: 14px;
+
     background: #eeeeee;
     color: #333333;
-    width: 520px;
     margin: 0 auto;
 }
 
@@ -13,7 +12,6 @@ body {
 }
 
 #todoapp h1 {
-    font-size: 36px;
     text-align: center;
 }
 

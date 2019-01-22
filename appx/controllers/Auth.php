@@ -23,14 +23,14 @@ class Auth extends CI_Controller
     public function register()
     {
         $data['errmsg'] = '';
-        $this->load->view('reg_view', $data);
+        $this->load->view('auth_view', $data);
     }
 
     public function login()
     {
         $data['errmsg'] = '';
         $this->load->view('header');
-        $this->load->view('login_view', $data);
+        $this->load->view('auth_view', $data);
     }
 
     public function create_account()
@@ -40,14 +40,17 @@ class Auth extends CI_Controller
         $password = $this->input->post('pword');
         $conf_password = $this->input->post('conf_pword');
 
-        if (!($errmsg = $this->authlib->register($name, $username, $password, $conf_password))) {
+        $wishlist_name = $this->input->post('wishlist_name');
+        $wishlist_desc = $this->input->post('wishlist_desc');
+
+        if (!($errmsg = $this->authlib->register($name, $username, $password, $conf_password, $wishlist_name, $wishlist_desc))) {
             $data['errmsg'] = '';
             $this->load->view('header');
-            $this->load->view('login_view', $data);
+            $this->load->view('auth_view', $data);
         } else {
             $data['errmsg'] = $errmsg;
             $this->load->view('header');
-            $this->load->view('reg_view', $data);
+            $this->load->view('auth_view', $data);
         }
     }
 
@@ -60,7 +63,9 @@ class Auth extends CI_Controller
         if ($user !== false) {
             $session_data = array(
                 'username' => $user['username'],
-                'name' => $user['name']
+                'name' => $user['name'],
+                'wishlist' => $user['wishlist_name'],
+                'description' => $user['wishlist_description']
             );
 
             $this->session->set_userdata($session_data);
@@ -69,7 +74,7 @@ class Auth extends CI_Controller
         } else {
             $data['errmsg'] = 'Unable to login. Please try again';
             $this->load->view('header');
-            $this->load->view('login_view', $data);
+            $this->load->view('auth_view', $data);
         }
     }
 }

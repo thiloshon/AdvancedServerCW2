@@ -8,7 +8,7 @@
  */
 class User_model extends CI_Model
 {
-    public function register($name, $username, $password)
+    public function register($name, $username, $password, $wishlist, $wishlist_desc)
     {
         $res = $this->db->get_where('users', array('username' => $username));
         if ($res->num_rows() > 0) {
@@ -16,7 +16,7 @@ class User_model extends CI_Model
         }
 
         $hashpwd = sha1($password);
-        $data = array('name' => $name, 'username' => $username, 'password' => $hashpwd);
+        $data = array('name' => $name, 'username' => $username, 'password' => $hashpwd, 'wishlist_name' => $wishlist, 'wishlist_description' => $wishlist_desc);
         $this->db->insert('users', $data);
 
         return null;
