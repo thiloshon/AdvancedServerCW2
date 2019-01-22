@@ -41,7 +41,7 @@ $(function () {
 
     //Model View & event action
     var TodoView = Backbone.View.extend({
-        tagName: "tr",
+        tagName: "li",
         template: _.template($("#item-template").html()),
         events: {
             "click .toggle": "toggleDone",

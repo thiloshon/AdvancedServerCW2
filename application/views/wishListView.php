@@ -18,59 +18,50 @@
 
 <body>
 
-<div id="todoapp">
-    <header>
-        <h1>Todos by Backbone.js</h1>
-        <div id="new-data">
-            <input id="new-todo-title"  type="text" placeholder="What do you wish?"/>
-            <input id="new-todo-price" class="new-data-item hidden" type="text" placeholder="How much is it?"/>
-            <input id="new-todo-priority" class="new-data-item hidden" type="text" placeholder="How important is it?"/>
-            <input id="new-todo-url" class="new-data-item hidden" type="text" placeholder="Where to get it (URL)?"/>
-        </div>
-    </header>
+<div class="container">
+    <div id="todoapp">
+        <header>
+            <h1>Todos by Backbone.js</h1>
+            <div id="new-data">
+                <form>
 
-    <section id="main" style="display: block;">
-        <input id="toggle-all" type="checkbox"/>
-        <label for="toggle-all">Mark all as complete</label>
+                    <input id="new-todo-title" class="form-control" type="text" placeholder="What do you wish?"/>
+                    <input id="new-todo-price" class="new-data-item form-control hidden" type="text" placeholder="How much is it?" />
+                    <input id="new-todo-priority" class="new-data-item form-control hidden" type="text" placeholder="How important is it?"/>
+                    <input id="new-todo-url" class="new-data-item form-control hidden" type="text" placeholder="Where to get it (URL)?"/>
 
-        <table class="table table-dark" id="todo-list">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-            </thead>
-            <tbody>
+                </form>
+            </div>
+        </header>
 
-            </tbody>
-        </table>
+        <section id="main" style="display: block;">
+            <input id="toggle-all" type="checkbox"/>
+            <label for="toggle-all">Mark all as complete</label>
+            <ul id="todo-list"></ul>
+        </section>
 
-
-
-    </section>
-
-    <footer style="display: block;">
-        <div class="todo-count"><b>2</b> items left</div>
-    </footer>
+        <footer style="display: block;">
+            <div class="todo-count"><b>2</b> items left</div>
+        </footer>
+    </div>
 </div>
+
+
+
 
 
 </body>
 
 <script type="text/template" id="item-template">
     <div class="view">
-        <td scope="row">
-            <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
-            <label><%- title %></label>
-        </td>
-        <td> <label><%- price %></label></td>
-        <td><label><%- priority %></label></td>
-        <td><label><%- url %></label></td>
-
-
-
+        <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+        <label><%- title %></label>
+        <br/>
+        <label><%- price %></label>
+        <br/>
+        <label><%- priority %></label>
+        <br/>
+        <label><%- url %></label>
         <a class="destroy"></a>
     </div>
     <!--<input class="edit" type="text" value="<%- title %>"/>-->
