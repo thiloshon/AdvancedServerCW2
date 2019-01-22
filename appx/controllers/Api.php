@@ -66,12 +66,13 @@ class Api extends \Restserver\Libraries\REST_Controller
         $url = $this->put('url');
         $priority = $this->put('priority');
         $wish_id = $this->put('id');
+        $done = $this->put('done');
 
         if (!$title || !$price || !$url || !$priority || !$wish_id) {
             $this->response("Enter complete wish information to update", 400);
         } else {
-            $result = $this->wish_model->update($wish_id,
-                array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority));
+            $result = $this->wish_model->update_wish($wish_id,
+                array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority, "done" => $done));
 
             if ($result === 0) {
                 $this->response("Wish information could not be updated. Try again.", 404);

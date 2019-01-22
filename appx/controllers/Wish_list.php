@@ -12,6 +12,8 @@ class Wish_list extends CI_Controller
     {
         $is_loggedin = $this->authlib->is_loggedin();
 
+        $this->load->view('header');
+
         if ($is_loggedin === false) {
             $this->load->view('auth_view', array('errmsg' => ""));
         } else {

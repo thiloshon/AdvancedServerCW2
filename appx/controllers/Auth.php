@@ -8,12 +8,12 @@
  */
 class Auth extends CI_Controller
 {
-
     public function index()
     {
         $is_loggedin = $this->authlib->is_loggedin();
 
         if ($is_loggedin === false) {
+            $this->load->view('header');
             $this->load->view('auth_view', array('errmsg' => ""));
         } else {
             redirect('http://localhost/AdvancedServerCW2/index.php/wish_list');
@@ -29,6 +29,7 @@ class Auth extends CI_Controller
     public function login()
     {
         $data['errmsg'] = '';
+        $this->load->view('header');
         $this->load->view('login_view', $data);
     }
 
@@ -41,9 +42,11 @@ class Auth extends CI_Controller
 
         if (!($errmsg = $this->authlib->register($name, $username, $password, $conf_password))) {
             $data['errmsg'] = '';
+            $this->load->view('header');
             $this->load->view('login_view', $data);
         } else {
             $data['errmsg'] = $errmsg;
+            $this->load->view('header');
             $this->load->view('reg_view', $data);
         }
     }
@@ -65,6 +68,7 @@ class Auth extends CI_Controller
 
         } else {
             $data['errmsg'] = 'Unable to login. Please try again';
+            $this->load->view('header');
             $this->load->view('login_view', $data);
         }
     }
