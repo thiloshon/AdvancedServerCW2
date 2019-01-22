@@ -18,7 +18,7 @@ class Api extends \Restserver\Libraries\REST_Controller
             exit;
         }
 
-        $result = $this->wish_model->getWish($username);
+        $result = $this->wish_model->get_wish($username);
         if ($result) {
             $this->response($result, 200);
             exit;
@@ -44,7 +44,7 @@ class Api extends \Restserver\Libraries\REST_Controller
             $this->response("Enter complete wish information to save", 400);
 
         } else {
-            $result = $this->wish_model->add(
+            $result = $this->wish_model->add_wish(
                 array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority, "owner_id" => $username));
 
             if ($result === 0) {
@@ -92,7 +92,7 @@ class Api extends \Restserver\Libraries\REST_Controller
             $this->response("Parameter missing", 404);
         }
 
-        if ($this->wish_model->delete($id)) {
+        if ($this->wish_model->delete_wish($id)) {
             $this->response("Success", 200);
         } else {
             $this->response("Failed", 400);

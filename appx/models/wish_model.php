@@ -8,11 +8,15 @@
  */
 class Wish_model extends CI_Model
 {
-    public function getWish($wishlist_id)
+    /**
+     * @param $username
+     * @return int
+     */
+    public function get_wish($username)
     {
         $this->db->select();
         $this->db->from('wishes');
-        $this->db->where('owner_id', $wishlist_id);
+        $this->db->where('owner_id', $username);
         $this->db->order_by("priority", "desc");
 
         $query = $this->db->get();
@@ -22,35 +26,50 @@ class Wish_model extends CI_Model
         } else {
             return 0;
         }
-
     }
 
 
-    public function delete($id){
-        $this->db->where('id', $id);
-        if($this->db->delete('wishes')){
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function add_wish($data)
+    {
+        if ($this->db->insert('wishes', $data)) {
             return true;
-        }else{
-            return false;
-        }
-
-    }
-
-
-    public function add($data){
-        if($this->db->insert('wishes', $data)){
-            return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    //API call - update a book record
-    public function update($id, $data){
+
+    /**
+     * @param $id
+     * @param $data
+     * @return bool
+     */
+    public function update_wish($id, $data)
+    {
         $this->db->where('id', $id);
-        if($this->db->update('wishes', $data)){
+
+        if ($this->db->update('wishes', $data)) {
             return true;
-        }else{
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function delete_wish($id)
+    {
+        $this->db->where('id', $id);
+
+        if ($this->db->delete('wishes')) {
+            return true;
+        } else {
             return false;
         }
     }
