@@ -12,7 +12,7 @@ class Wish_model extends CI_Model
     {
         $this->db->select();
         $this->db->from('wishes');
-        $this->db->where('wishlist_id', $wishlist_id);
+        $this->db->where('owner_id', $wishlist_id);
         $this->db->order_by("priority", "desc");
 
         $query = $this->db->get();
@@ -26,7 +26,7 @@ class Wish_model extends CI_Model
     }
 
 
-    public function deleteWish($id){
+    public function delete($id){
         $this->db->where('id', $id);
         if($this->db->delete('wishes')){
             return true;

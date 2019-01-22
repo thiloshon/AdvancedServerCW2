@@ -1,44 +1,51 @@
 <?php
 
 require(APPPATH . '/libraries/REST_Controller.php');
+require(APPPATH . '/libraries/Format.php');
 
 
 class Api extends \Restserver\Libraries\REST_Controller
 {
 
-//API - client sends isbn and on valid isbn book information is sent back
-    function wishByWishlist_get()
+    /**
+     *
+     */
+    function wish_get()
     {
-        $wishlist_id = $this->get('wishlist_id');
-        if (!$wishlist_id) {
+        $username = $this->get('owner_id');
+        if (!$username) {
             $this->response("No List specified", 400);
             exit;
         }
 
-        $result = $this->wish_model->getWish($wishlist_id);
+        $result = $this->wish_model->getWish($username);
         if ($result) {
             $this->response($result, 200);
             exit;
         } else {
-            $this->response("Invalid Wishlist ID", 404);
+            $this->response("Invalid username", 404);
             exit;
         }
     }
 
-//API - create a new book item in database.
-    function addWish_post()
+
+    /**
+     *
+     */
+    function wish_post()
     {
-        $name = $this->post('title');
+        $title = $this->post('title');
         $price = $this->post('price');
         $url = $this->post('url');
         $priority = $this->post('priority');
-        $wishlist_id = $this->post('wishlist_id');
+        $username = $this->post('owner_id');
 
-        if (!$name || !$price || !$url || !$wishlist_id || !$priority) {
+        if (!$title || !$price || !$url || !$username || !$priority) {
             $this->response("Enter complete wish information to save", 400);
+
         } else {
             $result = $this->wish_model->add(
-                array("title" => $name, "price" => $price, "url" => $url, "priority" => $priority, "wishlist_id" => $wishlist_id));
+                array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority, "owner_id" => $username));
 
             if ($result === 0) {
                 $this->response("Wish information could not be saved. Try again.", 404);
@@ -48,38 +55,48 @@ class Api extends \Restserver\Libraries\REST_Controller
         }
     }
 
-    //API - update a book
-    function updateWish_put()
+
+    /**
+     *
+     */
+    function wish_put()
     {
-        $name = $this->put('title');
+        $title = $this->put('title');
         $price = $this->put('price');
         $url = $this->put('url');
         $priority = $this->put('priority');
-        $wish_id = $this->put('wish_id');
+        $wish_id = $this->put('id');
 
-        if (!$name || !$price || !$url || !$priority || !$wish_id) {
+        if (!$title || !$price || !$url || !$priority || !$wish_id) {
             $this->response("Enter complete wish information to update", 400);
         } else {
-            $result = $this->book_model->update($wish_id, array("title" => $name, "price" => $price, "url" => $url, "priority" => $priority));
+            $result = $this->wish_model->update($wish_id,
+                array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority));
+
             if ($result === 0) {
                 $this->response("Wish information could not be updated. Try again.", 404);
             } else {
                 $this->response("success", 200);
             }
         }
+
     }
 
-    //API - delete a book
-    function deleteBook_delete()
+
+    /**
+     * @param $id
+     */
+    function wish_delete($id)
     {
-        $id = $this->delete('wish_id');
         if (!$id) {
             $this->response("Parameter missing", 404);
         }
-        if ($this->book_model->delete($id)) {
+
+        if ($this->wish_model->delete($id)) {
             $this->response("Success", 200);
         } else {
             $this->response("Failed", 400);
         }
     }
+
 }

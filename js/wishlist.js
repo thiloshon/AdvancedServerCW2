@@ -10,8 +10,9 @@ $(function () {
                 title: "no title...",
                 url: "",
                 price: 0,
-                priority: "",
+                priority: "could",
                 done: false,
+                owner_id: 0,
                 order: Todos.nextOrder(),
             };
         },
@@ -23,7 +24,7 @@ $(function () {
     //Model Collection
     var TodoList = Backbone.Collection.extend({
         model: Todo,
-        url: "http://localhost/AdvancedServerCW2/index.php/Welcome/wishList",
+        url: "http://localhost/AdvancedServerCW2/api/wish",
         //localStorage: new Backbone.LocalStorage("todos-backbone"),
         done: function () {
             return this.where({done: true});
@@ -116,7 +117,7 @@ $(function () {
             this.footer = this.$("footer");
             this.main = $("#main");
 
-            Todos.fetch();
+            Todos.fetch({ data: $.param({ owner_id: this.$("#new-todo-owner").val()}) });
             console.log("letssee");
             console.log(Todos);
         },
@@ -163,7 +164,8 @@ $(function () {
             if (!this.input.val()) return;
 
             Todos.create({title: this.input.val(), price: this.$("#new-todo-price").val(),
-                priority: this.$("#new-todo-priority").val(), url: this.$("#new-todo-url").val()});
+                priority: this.$("#new-todo-priority").val(), url: this.$("#new-todo-url").val(),
+                owner_id: this.$("#new-todo-owner").val() });
 
             this.input.val("");
             this.$("#new-todo-price").val("");

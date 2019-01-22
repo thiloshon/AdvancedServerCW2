@@ -60,7 +60,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `wishes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `wishes_wishlists_id_fk` (`wishlist_id`);
+  ADD KEY `wishes_wishlists_id_fk` (owner_id);
 
 --
 -- Indexes for table `wishlists`
@@ -93,7 +93,7 @@ ALTER TABLE `wishlists`
 -- Constraints for table `wishes`
 --
 ALTER TABLE `wishes`
-  ADD CONSTRAINT `wishes_wishlists_id_fk` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlists` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `wishes_wishlists_id_fk` FOREIGN KEY (owner_id) REFERENCES `wishlists` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `wishlists`
@@ -102,3 +102,71 @@ ALTER TABLE `wishlists`
   ADD CONSTRAINT `wishlists_users_username_fk` FOREIGN KEY (`owner`) REFERENCES `users` (`username`) ON DELETE CASCADE;
 COMMIT;
 
+
+
+
+
+
+
+
+--
+-- Database: `advanced_server`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+--
+-- Indexes for table `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+
+
+
+
+
+--
+-- Table structure for table `logins`
+--
+
+CREATE TABLE `logins` (
+  `session_id` varchar(40) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `logins`
+  ADD PRIMARY KEY (`session_id`);
+COMMIT;
+
+
+
+
+
+
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `name` varchar(40) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`username`);

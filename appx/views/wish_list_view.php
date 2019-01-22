@@ -22,6 +22,8 @@
     <div id="todoapp">
         <header>
             <h1>Todos by Backbone.js</h1>
+            <p>By: <?php echo $this->session->name ?> </p>
+
             <div id="new-data">
                 <form>
 
@@ -29,6 +31,8 @@
                     <input id="new-todo-price" class="new-data-item form-control hidden" type="text" placeholder="How much is it?" />
                     <input id="new-todo-priority" class="new-data-item form-control hidden" type="text" placeholder="How important is it?"/>
                     <input id="new-todo-url" class="new-data-item form-control hidden" type="text" placeholder="Where to get it (URL)?"/>
+
+                    <input id="new-todo-owner" class="hidden" value="<?php echo $this->session->username ?>">
 
                 </form>
             </div>
