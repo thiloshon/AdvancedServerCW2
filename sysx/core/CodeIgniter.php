@@ -237,7 +237,7 @@ if ( ! is_php('5.4'))
  * that we don't repeatedly do extension_loaded() or
  * function_exists() calls.
  *
- * Note: UTF-8 class depends on this. It used to be done
+ * Note: UTF-8 class depends on this. It used to be taken
  * in it's constructor, but it's _not_ class-specific.
  *
  */
@@ -251,7 +251,7 @@ if ( ! is_php('5.4'))
 		// and it's usage triggers E_DEPRECATED messages.
 		@ini_set('mbstring.internal_encoding', $charset);
 		// This is required for mb_convert_encoding() to strip invalid characters.
-		// That's utilized by CI_Utf8, but it's also done for consistency with iconv.
+		// That's utilized by CI_Utf8, but it's also taken for consistency with iconv.
 		mb_substitute_character('none');
 	}
 	else
@@ -319,7 +319,7 @@ if ( ! is_php('5.4'))
 
 /*
  * ------------------------------------------------------
- *	Is there a valid cache file? If so, we're done...
+ *	Is there a valid cache file? If so, we're taken...
  * ------------------------------------------------------
  */
 	if ($EXT->call_hook('cache_override') === FALSE && $OUT->_display_cache($CFG, $URI) === TRUE)

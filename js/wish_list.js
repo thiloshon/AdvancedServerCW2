@@ -7,14 +7,14 @@ $(function () {
                 url: "default_url",
                 price: -9,
                 priority: "could",
-                done: false,
-                owner_id: "default_username",
-                order: wish_list.nextOrder(),
+                priorityVal: 0,
+                taken: false,
+                owner_id: "default_username"
             };
         },
 
-        toggle: function () {
-            this.save({done: !this.get("done")});
+        claim_wish: function () {
+            this.save({taken: !this.get("taken")});
         }
     });
 
@@ -23,29 +23,38 @@ $(function () {
         model: Wish,
         url: "http://localhost/AdvancedServerCW2/api/wish",
 
-        done: function () {
-            return this.where({done: true});
+        claimed_wishes: function () {
+            return this.where({taken: true});
         },
 
-        remaining: function () {
-            return this.without.apply(this, this.done());
+        remaining_wishes: function () {
+            return this.where({taken: false});
         },
 
-        nextOrder: function () {
-            if (!this.length) return 1;
-            return this.last().get("order") + 1;
-        },
-
-        comparator: 'order',
+        /*comparator: function (item1, item2) {
+         console.log(item1.attributes.priorityVal -  item2.attributes.priorityVal)
+         console.log(item1.attributes.priorityVal + " " +  item2.attributes.priorityVal)
+         return ((item1.attributes.priorityVal - item2.attributes.priorityVal));
+         },*/
 
         parse: function (response) {
             response.forEach(function (element) {
-                element.done = !!+element.done;
+                element.taken = !!+element.taken;
+                element.priorityVal = (element.priority === "would" ? 2 : (element.priority === "could" ? 1 : 3));
+
             });
+
+            function compare(a, b) {
+                return a.priorityVal - b.priorityVal;
+            }
+
+            response.sort(compare);
+
             return response;
         }
     });
 
+    var wish_list = new WishList;
 
     var TodoView = Backbone.View.extend({
         tagName: "li",
@@ -65,13 +74,13 @@ $(function () {
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-            this.$el.toggleClass("done", this.model.get("done"));
+            this.$el.toggleClass("done", this.model.get("taken"));
             this.inputSet = this.$(".edit_box :input");
             return this;
         },
 
         toggleDone: function () {
-            this.model.toggle();
+            this.model.claim_wish();
         },
 
         edit: function () {
@@ -103,7 +112,6 @@ $(function () {
         }
     });
 
-    var wish_list = new WishList;
 
     var AppView = Backbone.View.extend({
         el: $("#todoapp"),
@@ -111,8 +119,8 @@ $(function () {
         events: {
             "keyup #new-todo-title": "makeVisible",
             "keypress #new-todo-url": "createOnEnter",
-            "click #clear-completed": "clearCompleted",
-            "click #toggle-all": "toggleAllComplete"
+            "click #clear-completed": "clearCompleted"
+            /*"click #toggle-all": "toggleAllComplete"*/
         },
 
         initialize: function () {
@@ -120,29 +128,29 @@ $(function () {
             this.allCheckbox = this.$("#toggle-all")[0];
 
             this.listenTo(wish_list, "add", this.addOne);
-            this.listenTo(wish_list, "reset", this.addAll);
             this.listenTo(wish_list, "all", this.render);
 
             this.footer = this.$("footer");
             this.main = $("#main");
 
             wish_list.fetch({data: $.param({owner_id: this.$("#new-todo-owner").val()})});
+
         },
 
         render: function () {
-            var done = wish_list.done().length;
-            var remaining = wish_list.remaining().length;
+            var taken_size = wish_list.claimed_wishes().length;
+            var remaining_size = wish_list.remaining_wishes().length;
 
             if (wish_list.length) {
                 this.main.show();
                 this.footer.show();
-                this.footer.html(this.statsTemplate({done: done, remaining: remaining}));
+                this.footer.html(this.statsTemplate({done: taken_size, remaining: remaining_size}));
             } else {
                 this.main.hide();
                 this.footer.hide();
             }
 
-            this.allCheckbox.checked = !remaining;
+            this.allCheckbox.checked = !remaining_size;
         },
 
         addOne: function (todo) {
@@ -150,9 +158,9 @@ $(function () {
             this.$("#todo-list").append(view.render().el);
         },
 
-        addAll: function () {
-            wish_list.each(this.addOne, this);
-        },
+        /*addAll: function () {
+         wish_list.each(this.addOne, this);
+         },*/
 
         makeVisible: function () {
 
@@ -169,10 +177,15 @@ $(function () {
             if (e.keyCode != 13) return;
             if (!this.input.val()) return;
 
+            var temp_priority = this.$("#new-todo-priority").val();
+
             wish_list.create({
-                title: this.input.val(), price: this.$("#new-todo-price").val(),
-                priority: this.$("#new-todo-priority").val(), url: this.$("#new-todo-url").val(),
-                owner_id: this.$("#new-todo-owner").val()
+                title: this.input.val(),
+                price: this.$("#new-todo-price").val(),
+                priority: temp_priority,
+                url: this.$("#new-todo-url").val(),
+                owner_id: this.$("#new-todo-owner").val(),
+                priorityVal: (temp_priority === "would" ? 2 : (temp_priority === "could" ? 1 : 3))
             });
 
             this.input.val("");
@@ -181,18 +194,12 @@ $(function () {
             this.$("#new-todo-url").val("");
 
             this.makeVisible();
+
         },
 
         clearCompleted: function () {
-            _.invoke(wish_list.done(), "destroy");
+            _.invoke(wish_list.claimed_wishes(), "destroy");
             return false;
-        },
-
-        toggleAllComplete: function () {
-            var done = this.allCheckbox.checked;
-            wish_list.each(function (todo) {
-                todo.save({"done": done});
-            });
         }
     });
 

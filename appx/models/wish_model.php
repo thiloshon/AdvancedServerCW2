@@ -17,7 +17,7 @@ class Wish_model extends CI_Model
         $this->db->select();
         $this->db->from('wishes');
         $this->db->where('owner_id', $username);
-        $this->db->order_by("priority", "desc");
+        //$this->db->order_by("priority", "desc");
 
         $query = $this->db->get();
 
