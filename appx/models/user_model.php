@@ -39,6 +39,17 @@ class User_model extends CI_Model
         return $res->row_array();
     }
 
+    public function user_details($username)
+    {
+        $this->db->where(array('username' => $username));
+        $res = $this->db->get('users', array('name'));
+        if ($res->num_rows() != 1) {
+            return false;
+        }
+
+        return $res->row_array();
+    }
+
     //SESSION
     function is_loggedin()
     {

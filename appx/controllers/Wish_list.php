@@ -20,4 +20,24 @@ class Wish_list extends CI_Controller
             $this->load->view('wish_list_view');
         }
     }
+
+
+    public function share($username){
+
+        $user_data = $this->user_model->user_details($username);
+
+        $session_data = array(
+            'username' => $username,
+            'name' => $user_data['name'],
+            'wishlist' => $user_data['wishlist_name'],
+            'description' => $user_data['wishlist_description']
+        );
+
+        $this->session->set_userdata($session_data);
+
+
+        $this->load->view('header');
+
+        $this->load->view('wish_list_share_view');
+    }
 }

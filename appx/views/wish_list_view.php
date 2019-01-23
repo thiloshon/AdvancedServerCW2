@@ -27,6 +27,12 @@
             <ul id="todo-list"></ul>
         </section>
 
+        <p>Share your wish list with friends:
+            <a href="<?php echo base_url(); ?>wish_list/share/<?php echo $this->session->username ?>">
+                <?php echo base_url(); ?>wish_list/share/<?php echo $this->session->username ?>
+            </a>
+        </p>
+
         <footer style="display: block;">
             <div class="todo-count"><b>2</b> wishes to be taken</div>
         </footer>
@@ -39,9 +45,9 @@
         <input class="toggle" type="checkbox" <%= taken ? 'checked="checked"' : '' %> />
 
         <label><%- title %></label> <br/>
-        <label><%- price %></label> <br/>
-        <label><%- priority %></label> <br/>
-        <label><%- url %></label>
+        <label><%- price %> $</label> <br/>
+        <label><%- priority === 'must' ? "Must Have" : (priority === 'would' ? "Would be Nice to Have" : "If You Can") %></label> <br/>
+        <label><a href="<%- url %>"><%- url %></a></label>
 
         <a class="destroy"></a>
     </div>
@@ -61,5 +67,13 @@
 
 </script>
 
-<script src="<?php echo base_url(); ?>/js/wish_list.js"></script>
+
+<script src="<?php echo base_url(); ?>/js/models/wish.js"></script>
+<script src="<?php echo base_url(); ?>/js/collections/wishes.js"></script>
+<script src="<?php echo base_url(); ?>/js/views/wishes.js"></script>
+<script src="<?php echo base_url(); ?>/js/views/app.js"></script>
+<script src="<?php echo base_url(); ?>/js/app.js"></script>
+
+
+<!--<script src="<?php /*echo base_url(); */?>/js/wish_list.js"></script>-->
 
