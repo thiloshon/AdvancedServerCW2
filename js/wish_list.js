@@ -20,12 +20,12 @@ $(function () {
 
 
     var WishList = Backbone.Collection.extend({
-        initialize : function(models,options){
+        initialize: function (models, options) {
             this.model = options.model ,
                 this.url = options.url
         },
         /*model: Wish,
-        url: "http://localhost/AdvancedServerCW2/api/wish",*/
+         url: "http://localhost/AdvancedServerCW2/api/wish",*/
 
         claimed_wishes: function () {
             return this.where({taken: true});
@@ -58,7 +58,7 @@ $(function () {
         }
     });
 
-    var wish_list = new WishList([],{ model : Wish , url : 'http://localhost/AdvancedServerCW2/api/wish' });
+    var wish_list = new WishList([], {model: Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});
 
     var TodoView = Backbone.View.extend({
         tagName: "li",

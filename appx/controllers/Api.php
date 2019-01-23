@@ -101,4 +101,30 @@ class Api extends \Restserver\Libraries\REST_Controller
         }
     }
 
+
+    /**
+     *
+     */
+    public function authenticate_post()
+    {
+        $username = $this->post('username');
+        $password = $this->post('password');
+        $user = $this->authlib->login($username, $password);
+
+        if ($user !== false) {
+            $session_data = array(
+                'username' => $user['username'],
+                'name' => $user['name'],
+                'wish_list_name' => $user['wishlist_name'],
+                'wish_list_description' => $user['wishlist_description']
+            );
+
+            $this->session->set_userdata($session_data);
+            $this->response($session_data, 200);
+
+        } else {
+            $this->response("Failed", 400);
+        }
+    }
+
 }

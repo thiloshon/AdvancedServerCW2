@@ -2,17 +2,19 @@
 
     <div class="row">
 
-        <div class="col-md-6 login-form-1">
+        <div class="col-md-6 login-form-1" id="login_panel">
             <h3>Welcome to Wish-esque!!! <br/> Login</h3>
-            <form action="http://localhost/AdvancedServerCW2/auth/authenticate" method="POST">
+            <form>
                 <div class="form-group">
-                    <input name="uname" type="text" class="form-control" placeholder="Your Username" value=""/>
+                    <input id="uname" name="uname" type="text" class="form-control" placeholder="Your Username"
+                           value=""/>
                 </div>
                 <div class="form-group">
-                    <input name="pword" type="password" class="form-control" placeholder="Your Password" value=""/>
+                    <input id="pword" name="pword" type="password" class="form-control" placeholder="Your Password"
+                           value=""/>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btnSubmit" value="Login"/>
+                    <button id="login-submit" name="submit" class="btnSubmit" value="Login">Login</button>
                 </div>
             </form>
 
@@ -62,3 +64,7 @@
 
     </div>
 </div>
+
+<script src="<?php echo base_url(); ?>js/models/user.js"></script>
+<script src="<?php echo base_url(); ?>js/views/login.js"></script>
+<script src="<?php echo base_url(); ?>js/login_app.js"></script>

@@ -22,7 +22,8 @@ class Wish_list extends CI_Controller
     }
 
 
-    public function share($username){
+    public function share($username)
+    {
 
         $user_data = $this->user_model->user_details($username);
 
@@ -35,9 +36,7 @@ class Wish_list extends CI_Controller
 
         $this->session->set_userdata($session_data);
 
-
         $this->load->view('header');
-
         $this->load->view('wish_list_share_view');
     }
 }

@@ -1,10 +1,17 @@
 <div class="container">
     <div id="todoapp">
         <header>
-            <span class="row"><h1 class="display-3"><?php echo $this->session->wishlist ?></h1>  <p
-                        class="lead"><?php echo $this->session->name ?></p></span>
-
-            <h3>                <?php echo $this->session->description ?>            </h3>
+            <span class="row">
+                <h1 class="display-3">
+                    <?php echo $this->session->wish_list_name ?>
+                </h1>
+                <p class="lead">
+                    <?php echo $this->session->name ?>
+                </p>
+            </span>
+            <h3>
+                <?php echo $this->session->wish_list_description ?>
+            </h3>
             <hr/>
 
             <div id="new-data">
@@ -33,6 +40,8 @@
             </a>
         </p>
 
+        <div id="place_holder"></div>
+
         <footer style="display: block;">
             <div class="todo-count"><b>2</b> wishes to be taken</div>
         </footer>
@@ -46,7 +55,8 @@
 
         <label><%- title %></label> <br/>
         <label><%- price %> $</label> <br/>
-        <label><%- priority === 'must' ? "Must Have" : (priority === 'would' ? "Would be Nice to Have" : "If You Can") %></label> <br/>
+        <label><%- priority === 'must' ? "Must Have" : (priority === 'would' ? "Would be Nice to Have" : "If You Can")
+            %></label> <br/>
         <label><a href="<%- url %>"><%- url %></a></label>
 
         <a class="destroy"></a>
@@ -67,6 +77,13 @@
 
 </script>
 
+<script type="text/template" id="user-template">
+    <div>
+        <p>LOLO <%- wish_list_name %> </p>
+    </div>
+
+</script>
+
 
 <script src="<?php echo base_url(); ?>/js/models/wish.js"></script>
 <script src="<?php echo base_url(); ?>/js/collections/wishes.js"></script>
@@ -75,5 +92,5 @@
 <script src="<?php echo base_url(); ?>/js/app.js"></script>
 
 
-<!--<script src="<?php /*echo base_url(); */?>/js/wish_list.js"></script>-->
+<!--<script src="<?php /*echo base_url(); */ ?>/js/wish_list.js"></script>-->
 

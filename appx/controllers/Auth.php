@@ -14,23 +14,10 @@ class Auth extends CI_Controller
 
         if ($is_loggedin === false) {
             $this->load->view('header');
-            $this->load->view('auth_view', array('errmsg' => ""));
+            $this->load->view('auth_view_bb', array('errmsg' => ""));
         } else {
             redirect('http://localhost/AdvancedServerCW2/index.php/wish_list');
         }
-    }
-
-    public function register()
-    {
-        $data['errmsg'] = '';
-        $this->load->view('auth_view', $data);
-    }
-
-    public function login()
-    {
-        $data['errmsg'] = '';
-        $this->load->view('header');
-        $this->load->view('auth_view', $data);
     }
 
     public function create_account()
@@ -46,11 +33,11 @@ class Auth extends CI_Controller
         if (!($errmsg = $this->authlib->register($name, $username, $password, $conf_password, $wishlist_name, $wishlist_desc))) {
             $data['errmsg'] = '';
             $this->load->view('header');
-            $this->load->view('auth_view', $data);
+            $this->load->view('auth_view_bb', $data);
         } else {
             $data['errmsg'] = $errmsg;
             $this->load->view('header');
-            $this->load->view('auth_view', $data);
+            $this->load->view('auth_view_bb', $data);
         }
     }
 
@@ -64,8 +51,8 @@ class Auth extends CI_Controller
             $session_data = array(
                 'username' => $user['username'],
                 'name' => $user['name'],
-                'wishlist' => $user['wishlist_name'],
-                'description' => $user['wishlist_description']
+                'wish_list_name' => $user['wishlist_name'],
+                'wish_list_description' => $user['wishlist_description']
             );
 
             $this->session->set_userdata($session_data);
@@ -74,7 +61,7 @@ class Auth extends CI_Controller
         } else {
             $data['errmsg'] = 'Unable to login. Please try again';
             $this->load->view('header');
-            $this->load->view('auth_view', $data);
+            $this->load->view('auth_view_bb', $data);
         }
     }
 }

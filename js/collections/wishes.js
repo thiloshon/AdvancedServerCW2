@@ -1,7 +1,7 @@
 var app = app || {};
 
 var WishList = Backbone.Collection.extend({
-    initialize : function(models,options){
+    initialize: function (models, options) {
         this.model = options.model ,
             this.url = options.url
     },
@@ -40,6 +40,5 @@ var WishList = Backbone.Collection.extend({
 });
 
 
-app.wish_list = new WishList([],{ model : app.Wish , url : 'http://localhost/AdvancedServerCW2/api/wish' });
-
-app.wish_list_share = new WishList([],{ model : app.Wish , url : 'http://localhost/AdvancedServerCW2/api/wish' });
+app.wish_list = new WishList([], {model: app.Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});
+app.wish_list_share = new WishList([], {model: app.Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});

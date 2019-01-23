@@ -27,7 +27,8 @@
 
         <label class="<%= taken ? 'strike' : '' %>"><%- title %></label> <br/>
         <label class="<%= taken ? 'strike' : '' %>"><%- price %> $</label> <br/>
-        <label class="<%= taken ? 'strike' : '' %>"><%- priority === 'must' ? "Must Have" : (priority === 'would' ? "Would be Nice to Have" : "If You Can") %></label> <br/>
+        <label class="<%= taken ? 'strike' : '' %>"><%- priority === 'must' ? "Must Have" : (priority === 'would' ?
+            "Would be Nice to Have" : "If You Can") %></label> <br/>
         <label class="<%= taken ? 'strike' : '' %>"><a href="<%- url %>"><%- url %></a></label>
 
         <a class="destroy"></a>

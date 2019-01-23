@@ -56,3 +56,18 @@ app.TodoView = Backbone.View.extend({
         this.model.destroy();
     }
 });
+
+
+app.UserView = Backbone.View.extend({
+    tagName: "div",
+    template: _.template($("#user-template").html()),
+
+    initialize: function () {
+
+    },
+
+    render: function () {
+        this.$el.html(this.template(app.user.toJSON()));
+        return this;
+    }
+});

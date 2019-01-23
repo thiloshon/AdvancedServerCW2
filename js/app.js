@@ -1,8 +1,7 @@
 var app = app || {};
 
-$(function() {
+$(function () {
 
     new app.AppView();
-    //new app.ShareAppView();
 
 });
