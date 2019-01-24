@@ -6,7 +6,8 @@ app.AppView = Backbone.View.extend({
     events: {
         "keyup #new-todo-title": "makeVisible",
         "keypress #new-todo-url": "createOnEnter",
-        "click #clear-completed": "clearCompleted"
+        "click #clear-completed": "clearCompleted",
+        "click #logout-btn": "logout"
         /*"click #toggle-all": "toggleAllComplete"*/
     },
 
@@ -87,5 +88,11 @@ app.AppView = Backbone.View.extend({
     clearCompleted: function () {
         _.invoke(app.wish_list.claimed_wishes(), "destroy");
         return false;
+    },
+
+    logout: function (e) {
+        e.preventDefault();
+
+        window.location.replace('http://localhost/AdvancedServerCW2/auth/logout');
     }
 });

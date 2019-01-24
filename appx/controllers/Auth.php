@@ -64,4 +64,10 @@ class Auth extends CI_Controller
             $this->load->view('auth_view_bb', $data);
         }
     }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect('http://localhost/AdvancedServerCW2');
+
+    }
 }
