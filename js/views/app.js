@@ -68,21 +68,27 @@ app.AppView = Backbone.View.extend({
 
         var temp_priority = this.$("#new-todo-priority").val();
 
-        app.wish_list.create({
-            title: this.input.val(),
-            price: this.$("#new-todo-price").val(),
-            priority: temp_priority,
-            url: this.$("#new-todo-url").val(),
-            owner_id: this.$("#new-todo-owner").val(),
-            priorityVal: (temp_priority === "would" ? 2 : (temp_priority === "could" ? 1 : 3))
-        });
+        if(this.input.val() === '' || this.$("#new-todo-price").val() === '' || temp_priority === '' || this.$("#new-todo-url").val() === ''){
+            alert("Missing Values");
+        } else {
+            app.wish_list.create({
+                title: this.input.val(),
+                price: this.$("#new-todo-price").val(),
+                priority: temp_priority,
+                url: this.$("#new-todo-url").val(),
+                owner_id: this.$("#new-todo-owner").val(),
+                priorityVal: (temp_priority === "would" ? 2 : (temp_priority === "could" ? 1 : 3))
+            });
 
-        this.input.val("");
-        this.$("#new-todo-price").val("");
-        this.$("#new-todo-priority").val("");
-        this.$("#new-todo-url").val("");
+            this.input.val("");
+            this.$("#new-todo-price").val("");
+            this.$("#new-todo-priority").val("");
+            this.$("#new-todo-url").val("");
 
-        this.makeVisible();
+            this.makeVisible();
+        }
+
+
     },
 
     logout: function (e) {
