@@ -10,26 +10,29 @@ app.AppView = Backbone.View.extend({
         "click #logout-btn": "logout"
     },
 
+    /**
+     * The initialization and event triggers
+     */
     initialize: function () {
         this.input = this.$("#new-todo-title");
         this.allCheckbox = this.$("#toggle-all")[0];
 
         this.listenTo(app.wish_list, "add", this.addOne);
         this.listenTo(app.wish_list, "all", this.render);
-        //this.listenTo(app.wish_list, "sort", this.render);
+        this.listenTo(app.wish_list, "sort", this.render);
 
         this.footer = this.$("footer");
         this.main = $("#main");
 
         app.wish_list.fetch({
-            data: $.param({owner_id: this.$("#new-todo-owner").val()}),
-            error: (function (e) {
-                alert(' Service request failure: ' + e);
-            })
+            data: $.param({owner_id: this.$("#new-todo-owner").val()})
         });
 
     },
 
+    /**
+     * Rendering logic.
+     */
     render: function () {
         var taken_size = app.wish_list.claimed_wishes().length;
         var remaining_size = app.wish_list.remaining_wishes().length;
@@ -46,13 +49,20 @@ app.AppView = Backbone.View.extend({
         this.allCheckbox.checked = !remaining_size;
     },
 
+    /**
+     * Adding one element to the model and view.
+     *
+     * @param wish The wish element to add.
+     */
     addOne: function (wish) {
         var view = new app.WishView({model: wish});
         this.$("#todo-list").append(view.render().el);
     },
 
+    /**
+     * Show and hide edit fields.
+     */
     makeVisible: function () {
-
         if (this.input.val() === "") {
             $(".new-data-item").addClass("hidden");
             $(".new-data-item").removeClass("focused");
@@ -62,6 +72,10 @@ app.AppView = Backbone.View.extend({
         }
     },
 
+    /**
+     * Adding a new element with enter key
+     * @param e the event parameter.
+     */
     createOnEnter: function (e) {
         if (e.keyCode != 13) return;
         if (!this.input.val()) return;
@@ -69,7 +83,8 @@ app.AppView = Backbone.View.extend({
         var temp_priority = this.$("#new-todo-priority").val();
 
         if(this.input.val() === '' || this.$("#new-todo-price").val() === '' || temp_priority === '' || this.$("#new-todo-url").val() === ''){
-            alert("Missing Values");
+            swal("Missing Values!", "Please fill all fields!", "error");
+
         } else {
             app.wish_list.create({
                 title: this.input.val(),
@@ -86,11 +101,14 @@ app.AppView = Backbone.View.extend({
             this.$("#new-todo-url").val("");
 
             this.makeVisible();
+            location.reload('')
         }
-
-
     },
 
+    /**
+     * Logging out logic
+     * @param e To prevent default trigger of button submit.
+     */
     logout: function (e) {
         e.preventDefault();
         window.location.replace('http://localhost/AdvancedServerCW2/auth/logout');

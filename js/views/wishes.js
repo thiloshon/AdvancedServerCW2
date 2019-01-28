@@ -24,15 +24,24 @@ app.WishView = Backbone.View.extend({
         return this;
     },
 
+    /**
+     * Function for claiming the wish
+     */
     toggleDone: function () {
         this.model.claim_wish();
     },
 
+    /**
+     * Operations to edit an item
+     */
     edit: function () {
         this.$el.addClass("editing");
         this.$el.find(".edit_box").addClass("editing");
     },
 
+    /**
+     * adding element while closing text fileds.
+     */
     close: function () {
         var arr = [];
         this.inputSet.each(function (e) {
@@ -53,7 +62,12 @@ app.WishView = Backbone.View.extend({
     },
 
     clear: function () {
-        this.model.destroy();
+        this.model.destroy({
+            success: function(model, response){
+                swal("Deleted wish!",'', "success");
+            }
+        });
+
     }
 });
 

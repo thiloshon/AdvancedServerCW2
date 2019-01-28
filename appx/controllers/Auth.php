@@ -71,7 +71,7 @@ class Auth extends CI_Controller
     }
 
     /**
-     * Signup process
+     * Sign-out process
      */
     public function logout(){
         $this->session->sess_destroy();

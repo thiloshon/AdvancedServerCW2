@@ -6,14 +6,27 @@ var WishList = Backbone.Collection.extend({
             this.url = options.url
     },
 
+    /**
+     * Number of wishes fulfilled
+     * @returns {*}
+     */
     claimed_wishes: function () {
         return this.where({taken: true});
     },
 
+    /**
+     * Number of wishes to be fulfilled.
+     * @returns {*}
+     */
     remaining_wishes: function () {
         return this.where({taken: false});
     },
 
+    /**
+     * Parsing the response recieved from GET call.
+     * @param response
+     * @returns {*}
+     */
     parse: function (response) {
         response.forEach(function (element) {
             element.taken = !!+element.taken;

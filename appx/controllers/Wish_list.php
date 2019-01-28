@@ -25,10 +25,11 @@ class Wish_list extends CI_Controller
     /**
      * The sharing wishlist controller
      *
-     * @param $username Username to view just sharable page
+     * @param $identifier Username to view just sharable page
      */
-    public function share($username)
+    public function share($identifier)
     {
+        $username = base64_decode($identifier);
         $user_data = $this->user_model->user_details($username);
 
         $session_data = array(

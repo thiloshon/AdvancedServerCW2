@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0">
             <a id="share-btn" class="btn btn-warning my-2 my-sm-0" target="_blank"
-               href="<?php echo base_url(); ?>wish_list/share/<?php echo $this->session->username ?>">
+               href="<?php echo base_url(); ?>wish_list/share/<?php echo base64_encode($this->session->username) ?>">
                 <i class="fa fa-share-alt"></i>
             </a>
             <a class="btn btn-dark my-2 my-sm-0" href="http://localhost/AdvancedServerCW2/auth/logout">Logout</a>

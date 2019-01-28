@@ -1,5 +1,8 @@
 <div class="container login-container">
-    <span id="messageBoard" style="color: #46b396"><?php echo $errmsg ?></span>
+    <div class="row" style="padding-left: 50%; background-color: #b3b3b3;">
+        <span id="messageBoard" style=" color: #b31124"><?php echo $errmsg ?></span>
+    </div>
+
     <div class="row">
 
 

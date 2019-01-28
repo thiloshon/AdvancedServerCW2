@@ -5,6 +5,15 @@
  */
 class User_model extends CI_Model
 {
+
+    /**
+     * @param $name
+     * @param $username
+     * @param $password
+     * @param $wishlist
+     * @param $wishlist_desc
+     * @return null|string
+     */
     public function register($name, $username, $password, $wishlist, $wishlist_desc)
     {
         $res = $this->db->get_where('users', array('username' => $username));
@@ -19,6 +28,11 @@ class User_model extends CI_Model
         return null;
     }
 
+    /**
+     * @param $username
+     * @param $password
+     * @return bool
+     */
     public function login($username, $password)
     {
         $this->db->where(array('username' => $username, 'password' => sha1($password)));
@@ -48,6 +62,9 @@ class User_model extends CI_Model
     }
 
     //SESSION
+    /**
+     * @return bool
+     */
     function is_loggedin()
     {
         $session_id = $this->session->session_id;
