@@ -8,7 +8,6 @@ app.AppView = Backbone.View.extend({
         "keypress #new-todo-url": "createOnEnter",
         "click #clear-completed": "clearCompleted",
         "click #logout-btn": "logout"
-        /*"click #toggle-all": "toggleAllComplete"*/
     },
 
     initialize: function () {
@@ -21,7 +20,12 @@ app.AppView = Backbone.View.extend({
         this.footer = this.$("footer");
         this.main = $("#main");
 
-        app.wish_list.fetch({data: $.param({owner_id: this.$("#new-todo-owner").val()})});
+        app.wish_list.fetch({
+            data: $.param({owner_id: this.$("#new-todo-owner").val()}),
+            error: (function (e) {
+                alert(' Service request failure: ' + e);
+            })
+        });
 
     },
 
@@ -41,14 +45,10 @@ app.AppView = Backbone.View.extend({
         this.allCheckbox.checked = !remaining_size;
     },
 
-    addOne: function (todo) {
-        var view = new app.TodoView({model: todo});
+    addOne: function (wish) {
+        var view = new app.WishView({model: wish});
         this.$("#todo-list").append(view.render().el);
     },
-
-    /*addAll: function () {
-     app.wish_list.each(this.addOne, this);
-     },*/
 
     makeVisible: function () {
 
@@ -82,17 +82,10 @@ app.AppView = Backbone.View.extend({
         this.$("#new-todo-url").val("");
 
         this.makeVisible();
-
-    },
-
-    clearCompleted: function () {
-        _.invoke(app.wish_list.claimed_wishes(), "destroy");
-        return false;
     },
 
     logout: function (e) {
         e.preventDefault();
-
         window.location.replace('http://localhost/AdvancedServerCW2/auth/logout');
     }
 });

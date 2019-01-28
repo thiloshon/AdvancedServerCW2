@@ -5,8 +5,6 @@ var WishList = Backbone.Collection.extend({
         this.model = options.model ,
             this.url = options.url
     },
-    /*model: Wish,
-     url: "http://localhost/AdvancedServerCW2/api/wish",*/
 
     claimed_wishes: function () {
         return this.where({taken: true});
@@ -15,12 +13,6 @@ var WishList = Backbone.Collection.extend({
     remaining_wishes: function () {
         return this.where({taken: false});
     },
-
-    /*comparator: function (item1, item2) {
-     console.log(item1.attributes.priorityVal -  item2.attributes.priorityVal)
-     console.log(item1.attributes.priorityVal + " " +  item2.attributes.priorityVal)
-     return ((item1.attributes.priorityVal - item2.attributes.priorityVal));
-     },*/
 
     parse: function (response) {
         response.forEach(function (element) {
@@ -32,13 +24,16 @@ var WishList = Backbone.Collection.extend({
         function compare(a, b) {
             return a.priorityVal - b.priorityVal;
         }
-
         response.sort(compare);
 
         return response;
     }
 });
 
-
 app.wish_list = new WishList([], {model: app.Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});
+
+app.wish_list.comparator =  function (wish) {
+    return (wish.get('priority'));
+};
+
 app.wish_list_share = new WishList([], {model: app.Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});

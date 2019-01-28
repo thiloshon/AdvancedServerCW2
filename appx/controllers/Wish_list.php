@@ -1,13 +1,14 @@
 <?php
 
 /**
- * Created by IntelliJ IDEA.
- * User: Thiloshon
- * Date: 21-Jan-19
- * Time: 6:31 PM
+ * Class Wish_list to manage wish list
  */
 class Wish_list extends CI_Controller
 {
+
+    /**
+     * Landing page
+     */
     public function index()
     {
         $is_loggedin = $this->authlib->is_loggedin();
@@ -15,16 +16,19 @@ class Wish_list extends CI_Controller
         $this->load->view('header');
 
         if ($is_loggedin === false) {
-            $this->load->view('auth_view', array('errmsg' => ""));
+            $this->load->view('auth_view_bb', array('errmsg' => ""));
         } else {
             $this->load->view('wish_list_view');
         }
     }
 
-
+    /**
+     * The sharing wishlist controller
+     *
+     * @param $username Username to view just sharable page
+     */
     public function share($username)
     {
-
         $user_data = $this->user_model->user_details($username);
 
         $session_data = array(

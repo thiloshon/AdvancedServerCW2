@@ -36,5 +36,5 @@ app.ShareAppView = Backbone.View.extend({
     addOne: function (todo) {
         var view = new app.ShareView({model: todo});
         this.$("#todo-list-share").append(view.render().el);
-    },
+    }
 });

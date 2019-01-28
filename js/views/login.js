@@ -21,7 +21,10 @@ app.LoginView = Backbone.View.extend({
         app.user.save(null, {
             success: function () {
                 window.location.replace('http://localhost/AdvancedServerCW2/wish_list');
-            }
+            },
+            error: (function (e) {
+                alert('Login error. Try again');
+            })
         });
     }
 });

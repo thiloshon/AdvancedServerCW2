@@ -67,6 +67,10 @@ body {
     text-decoration: line-through;
 }
 
+.done {
+    background-color: #babbbb;
+}
+
 #todo-list .destroy {
     position: absolute;
     right: 5px;
@@ -171,3 +175,43 @@ li {
     padding-top: 10px;
 }
 
+
+
+
+input[type=checkbox] + label {
+    display: block;
+    cursor: pointer;
+    padding: 0.2em;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label:before {
+    content: "\2714  Claimed  ";
+    border: 0.1em solid #46b396;
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    padding-left: 0.2em;
+    padding-bottom: 0.3em;
+    margin-right: 0.2em;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+}
+
+input[type=checkbox] + label:active:before {
+    transform: scale(0);
+}
+
+input[type=checkbox]:checked + label:before {
+    padding-right: 10px;
+    padding-bottom: 10px;
+    width: auto;
+    background-color: #6c757d;
+    border-color: #495057;
+    color: #ffffff;
+}

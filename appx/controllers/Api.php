@@ -3,12 +3,14 @@
 require(APPPATH . '/libraries/REST_Controller.php');
 require(APPPATH . '/libraries/Format.php');
 
-
+/**
+ * Class Api REST-ful service to offer wish list management
+ */
 class Api extends \Restserver\Libraries\REST_Controller
 {
 
     /**
-     *
+     * GET wishes for a username
      */
     function wish_get()
     {
@@ -31,7 +33,7 @@ class Api extends \Restserver\Libraries\REST_Controller
 
 
     /**
-     *
+     * POST a wish to database
      */
     function wish_post()
     {
@@ -58,7 +60,7 @@ class Api extends \Restserver\Libraries\REST_Controller
 
 
     /**
-     *
+     * PUT update a wish based on wish id
      */
     function wish_put()
     {
@@ -86,7 +88,8 @@ class Api extends \Restserver\Libraries\REST_Controller
 
 
     /**
-     * @param $id
+     * Delete a wish
+     * @param $id the id to delete
      */
     function wish_delete($id)
     {
@@ -103,7 +106,7 @@ class Api extends \Restserver\Libraries\REST_Controller
 
 
     /**
-     *
+     * POST authenticate a user with basic auth
      */
     public function authenticate_post()
     {
@@ -126,7 +129,6 @@ class Api extends \Restserver\Libraries\REST_Controller
             $this->response("Failed", 400);
         }
     }
-
 
 
 }

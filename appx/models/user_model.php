@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Created by IntelliJ IDEA.
- * User: Thiloshon
- * Date: 04-Nov-18
- * Time: 6:50 PM
+ *
  */
 class User_model extends CI_Model
 {

@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Created by IntelliJ IDEA.
- * User: Thiloshon
- * Date: 22-Jan-19
- * Time: 10:30 AM
+ *
  */
 class Wish_model extends CI_Model
 {

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Created by IntelliJ IDEA.
- * User: Thiloshon
- * Date: 04-Nov-18
- * Time: 6:00 PM
+ * Class Auth to perform authentication logic
  */
 class Auth extends CI_Controller
 {
+    /**
+     * Landing page controller
+     */
     public function index()
     {
         $is_loggedin = $this->authlib->is_loggedin();
@@ -16,17 +16,19 @@ class Auth extends CI_Controller
             $this->load->view('header');
             $this->load->view('auth_view_bb', array('errmsg' => ""));
         } else {
-            redirect('http://localhost/AdvancedServerCW2/index.php/wish_list');
+            redirect("/wish_list");
         }
     }
 
+    /**
+     * Registration process
+     */
     public function create_account()
     {
         $name = $this->input->post('name');
         $username = $this->input->post('uname');
         $password = $this->input->post('pword');
         $conf_password = $this->input->post('conf_pword');
-
         $wishlist_name = $this->input->post('wishlist_name');
         $wishlist_desc = $this->input->post('wishlist_desc');
 
@@ -41,6 +43,9 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Login process
+     */
     public function authenticate()
     {
         $username = $this->input->post('uname');
@@ -56,7 +61,7 @@ class Auth extends CI_Controller
             );
 
             $this->session->set_userdata($session_data);
-            redirect('/index.php/wish_list');
+            redirect('/wish_list');
 
         } else {
             $data['errmsg'] = 'Unable to login. Please try again';
@@ -65,9 +70,11 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Signup process
+     */
     public function logout(){
         $this->session->sess_destroy();
-        redirect('http://localhost/AdvancedServerCW2');
-
+        redirect('/');
     }
 }
