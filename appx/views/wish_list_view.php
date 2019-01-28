@@ -32,12 +32,15 @@
                 <form>
                     <br/>
                     <input id="new-todo-title" class="form-control" type="text" placeholder="What do you wish?"/>
-                    <input id="new-todo-price" class="new-data-item form-control hidden" type="text"
-                           placeholder="How much is it?"/>
-                    <input id="new-todo-priority" class="new-data-item form-control hidden" type="text"
-                           placeholder="How important is it?"/>
-                    <input id="new-todo-url" class="new-data-item form-control hidden" type="text"
-                           placeholder="Where to get it (URL)?"/>
+                    <input id="new-todo-price" class="new-data-item form-control hidden" type="number"  placeholder="How much is it?">
+
+                    <select id="new-todo-priority" class="new-data-item form-control hidden">
+                        <option value="must">Must Have</option>
+                        <option value="would">Would be Nice to Have </option>
+                        <option value="could">If you can</option>
+                    </select>
+                    <input id="new-todo-url" class="new-data-item form-control hidden" type="url"
+                           placeholder="Where to get it (URL)?" />
                     <input id="new-todo-owner" class="hidden" value="<?php echo $this->session->username ?>">
                 </form>
             </div>

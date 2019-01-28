@@ -1,6 +1,8 @@
 <div class="container login-container">
-
+    <span id="messageBoard" style="color: #46b396"><?php echo $errmsg ?></span>
     <div class="row">
+
+
 
         <div class="col-md-6 login-form-1" id="login_panel">
             <h3>Welcome to Wish-esque!!! <br/> Login</h3>
@@ -60,7 +62,7 @@
             </form>
         </div>
 
-        <span style="color: red"><?php echo $errmsg ?></span>
+
 
     </div>
 </div>

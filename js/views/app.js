@@ -16,6 +16,7 @@ app.AppView = Backbone.View.extend({
 
         this.listenTo(app.wish_list, "add", this.addOne);
         this.listenTo(app.wish_list, "all", this.render);
+        //this.listenTo(app.wish_list, "sort", this.render);
 
         this.footer = this.$("footer");
         this.main = $("#main");

@@ -33,7 +33,7 @@ class Auth extends CI_Controller
         $wishlist_desc = $this->input->post('wishlist_desc');
 
         if (!($errmsg = $this->authlib->register($name, $username, $password, $conf_password, $wishlist_name, $wishlist_desc))) {
-            $data['errmsg'] = '';
+            $data['errmsg'] = 'Wish list Created. Now login!';
             $this->load->view('header');
             $this->load->view('auth_view_bb', $data);
         } else {
