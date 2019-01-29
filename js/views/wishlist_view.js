@@ -17,7 +17,8 @@ app.AppView = Backbone.View.extend({
         this.input = this.$("#new-todo-title");
         this.allCheckbox = this.$("#toggle-all")[0];
 
-        this.listenTo(app.wish_list, "add", this.addOne);
+        this.listenTo(app.wish_list, "reset", this.addAll);
+        this.listenTo(app.wish_list, 'sync', this.addAll);
         this.listenTo(app.wish_list, "all", this.render);
         this.listenTo(app.wish_list, "sort", this.render);
 
@@ -56,7 +57,20 @@ app.AppView = Backbone.View.extend({
      */
     addOne: function (wish) {
         var view = new app.WishView({model: wish});
-        this.$("#todo-list").append(view.render().el);
+        if (wish.get('taken')) {
+            this.$("#todo-list-done").append(view.render().el);
+        } else {
+            this.$("#todo-list").append(view.render().el);
+        }
+    },
+
+    addAll: function () {
+
+        $("#todo-list").empty();
+        $("#todo-list-done").empty();
+
+        app.wish_list.sort();
+        app.wish_list.each(this.addOne, this);
     },
 
     /**
@@ -101,7 +115,6 @@ app.AppView = Backbone.View.extend({
             this.$("#new-todo-url").val("");
 
             this.makeVisible();
-            location.reload('')
         }
     },
 

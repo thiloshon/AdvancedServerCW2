@@ -1,7 +1,7 @@
 var app = app || {};
 
 app.User = Backbone.Model.extend({
-    url: "http://localhost/AdvancedServerCW2/api/authenticate",
+    url: "http://admin:serverCW@localhost/AdvancedServerCW2/api/authenticate",
     defaults: function () {
         return {
             name: "default_title",

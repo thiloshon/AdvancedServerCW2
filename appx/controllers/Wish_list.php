@@ -12,13 +12,15 @@ class Wish_list extends CI_Controller
     public function index()
     {
         $is_loggedin = $this->authlib->is_loggedin();
-
         $this->load->view('header');
 
         if ($is_loggedin === false) {
             $this->load->view('auth_view_bb', array('errmsg' => ""));
         } else {
-            $this->load->view('wish_list_view');
+            $encrypt_username = $this->encryption->encrypt($this->session->username);
+            $encrypt_username = str_replace("/", "%2F", $encrypt_username);
+
+            $this->load->view('wish_list_view', array('encrypt_username' => $encrypt_username));
         }
     }
 
@@ -29,7 +31,7 @@ class Wish_list extends CI_Controller
      */
     public function share($identifier)
     {
-        $username = base64_decode($identifier);
+        $username = $this->encryption->decrypt($identifier);
         $user_data = $this->user_model->user_details($username);
 
         $session_data = array(

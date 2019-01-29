@@ -16,7 +16,7 @@ class Api extends \Restserver\Libraries\REST_Controller
     {
         $username = $this->get('owner_id');
         if (!$username) {
-            $this->response("No List specified", 400);
+            $this->response("Missing username", 400);
             exit;
         }
 
@@ -51,7 +51,7 @@ class Api extends \Restserver\Libraries\REST_Controller
                 array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority, "owner_id" => $username));
 
             if ($result === 0) {
-                $this->response("Wish information could not be saved. Try again.", 404);
+                $this->response("Wish information could not be saved. Try again.", 500);
             } else {
                 $this->response("success", 200);
             }
@@ -78,7 +78,7 @@ class Api extends \Restserver\Libraries\REST_Controller
                 array("title" => $title, "price" => $price, "url" => $url, "priority" => $priority, "taken" => $done));
 
             if ($result === 0) {
-                $this->response("Wish information could not be updated. Try again.", 404);
+                $this->response("Wish information could not be updated. Try again.", 500);
             } else {
                 $this->response("success", 200);
             }
@@ -94,13 +94,13 @@ class Api extends \Restserver\Libraries\REST_Controller
     function wish_delete($id)
     {
         if (!$id) {
-            $this->response("Parameter missing", 404);
+            $this->response("Parameter missing", 400);
         }
 
         if ($this->wish_model->delete_wish($id)) {
             $this->response("Success", 200);
         } else {
-            $this->response("Failed", 400);
+            $this->response("Wish information could not be deleted. Try again.", 500);
         }
     }
 
@@ -126,7 +126,7 @@ class Api extends \Restserver\Libraries\REST_Controller
             $this->response($session_data, 200);
 
         } else {
-            $this->response("Failed", 400);
+            $this->response("Failed", 500);
         }
     }
 

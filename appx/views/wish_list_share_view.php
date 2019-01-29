@@ -42,8 +42,8 @@
 <script src="<?php echo base_url(); ?>/js/models/wish.js"></script>
 <script src="<?php echo base_url(); ?>/js/collections/wishes.js"></script>
 
-<script src="<?php echo base_url(); ?>/js/views/share_wishes.js"></script>
-<script src="<?php echo base_url(); ?>/js/views/share_app.js"></script>
+<script src="<?php echo base_url(); ?>/js/views/shareable_wish_view.js"></script>
+<script src="<?php echo base_url(); ?>/js/views/shareable_wishlist_view.js"></script>
 
 <script src="<?php echo base_url(); ?>/js/share_app.js"></script>
 

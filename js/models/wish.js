@@ -7,7 +7,6 @@ app.Wish = Backbone.Model.extend({
             url: "default_url",
             price: -9,
             priority: "could",
-            priorityVal: 0,
             taken: false,
             owner_id: "default_username"
         };

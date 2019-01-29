@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0">
             <a id="share-btn" class="btn btn-warning my-2 my-sm-0" target="_blank"
-               href="<?php echo base_url(); ?>wish_list/share/<?php echo base64_encode($this->session->username) ?>">
+               href="<?php echo base_url(); ?>wish_list/share/<?php echo $encrypt_username  ?>">
                 <i class="fa fa-share-alt"></i>
             </a>
             <a class="btn btn-dark my-2 my-sm-0" href="http://localhost/AdvancedServerCW2/auth/logout">Logout</a>
@@ -49,19 +49,20 @@
         <section id="main">
             <input id="toggle-all" type="checkbox" hidden/>
             <ul id="todo-list"></ul>
+            <ul id="todo-list-done"></ul>
         </section>
 
-        <p>Share your wish list with friends:
-            <a href="<?php echo base_url(); ?>wish_list/share/<?php echo $this->session->username ?>">
-                <?php echo base_url(); ?>wish_list/share/<?php echo $this->session->username ?>
-            </a>
-        </p>
+
     </div>
 </div>
 
 
 <script type="text/template" id="item-template">
-    <div class="view">
+    <div class="view shadow">
+
+        <div class="item-image-overlay">
+            <img src="https://api.letsvalidate.com/v1/thumbs/?url=<%- url %>" class="img-thumbnail rounded float-right item-image shadow "/>
+        </div>
 
         <input id="list-item<%- url %>" class="toggle" type="checkbox"
                style="display: none;" <%= taken ? 'checked="checked"' : '' %> />
@@ -95,8 +96,8 @@
 
 <script src="<?php echo base_url(); ?>/js/models/wish.js"></script>
 <script src="<?php echo base_url(); ?>/js/collections/wishes.js"></script>
-<script src="<?php echo base_url(); ?>/js/views/wishes.js"></script>
-<script src="<?php echo base_url(); ?>/js/views/app.js"></script>
+<script src="<?php echo base_url(); ?>/js/views/wish_view.js"></script>
+<script src="<?php echo base_url(); ?>/js/views/wishlist_view.js"></script>
 <script src="<?php echo base_url(); ?>/js/app.js"></script>
 
 

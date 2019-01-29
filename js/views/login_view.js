@@ -24,6 +24,7 @@ app.LoginView = Backbone.View.extend({
             swal("Empty Fields!", "Please fill all!", "error");
         } else {
             app.user = new app.User({username: this.$("#uname").val(), password: this.$("#pword").val()});
+
             app.user.save(null, {
                 success: function () {
                     window.location.replace('http://localhost/AdvancedServerCW2/wish_list');

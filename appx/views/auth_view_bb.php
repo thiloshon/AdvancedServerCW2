@@ -71,5 +71,5 @@
 </div>
 
 <script src="<?php echo base_url(); ?>js/models/user.js"></script>
-<script src="<?php echo base_url(); ?>js/views/login.js"></script>
+<script src="<?php echo base_url(); ?>js/views/login_view.js"></script>
 <script src="<?php echo base_url(); ?>js/login_app.js"></script>

@@ -30,23 +30,13 @@ var WishList = Backbone.Collection.extend({
     parse: function (response) {
         response.forEach(function (element) {
             element.taken = !!+element.taken;
-            element.priorityVal = (element.priority === "would" ? 2 : (element.priority === "could" ? 1 : 3));
-
         });
 
-        function compare(a, b) {
-            return a.priorityVal - b.priorityVal;
-        }
-        response.sort(compare);
-
         return response;
-    }
+    },
+
+    comparator: 'priority'
 });
 
-app.wish_list = new WishList([], {model: app.Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});
-
-app.wish_list.comparator =  function (wish) {
-    return (wish.get('priority'));
-};
-
-app.wish_list_share = new WishList([], {model: app.Wish, url: 'http://localhost/AdvancedServerCW2/api/wish'});
+app.wish_list = new WishList([], {model: app.Wish, url: 'http://admin:serverCW@localhost/AdvancedServerCW2/api/wish'});
+app.wish_list_share = new WishList([], {model: app.Wish, url: 'http://admin:serverCW@localhost/AdvancedServerCW2/api/wish'});
