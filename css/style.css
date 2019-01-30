@@ -311,7 +311,19 @@ input[type=checkbox]:checked + label:before {
      text-align: center;
 }
 
+.claim-button {
+    width: 20%;
+    background-color: #117a8b;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+
 .claimed-by{
     text-decoration: none !important;
     color: #bd2130 !important;
+}
+
+.hidden-btn{
+    visibility: hidden;
 }

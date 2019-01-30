@@ -4,9 +4,6 @@
     </div>
 
     <div class="row">
-
-
-
         <div class="col-md-6 login-form-1" id="login_panel">
             <h3>Welcome to Wish-esque!!! <br/> Login</h3>
             <form>
@@ -22,8 +19,6 @@
                     <button id="login-submit" name="submit" class="btnSubmit" value="Login">Login</button>
                 </div>
             </form>
-
-
         </div>
 
         <div class="col-md-6 login-form-2">
@@ -56,17 +51,13 @@
                            value=""/>
                 </div>
 
-
                 <hr/>
+
                 <div class="form-group">
                     <input type="submit" class="btnSubmit" value="Create Wishlist"/>
                 </div>
-
             </form>
         </div>
-
-
-
     </div>
 </div>
 

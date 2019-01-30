@@ -2,19 +2,19 @@
     <div id="shareWish">
 
         <header>
-            <span class="row"><h1 class="display-3"><?php echo $this->session->wish_list_name ?></h1>  <p
-                        class="lead"><?php echo $this->session->name ?></p></span>
+            <span class="row">
+                <h1 class="display-3"><?php echo $this->session->wish_list_name ?></h1>
+                <p class="lead"><?php echo $this->session->name ?></p>
+            </span>
 
-            <h3>                <?php echo $this->session->wish_list_description ?>            </h3>
+            <h3> <?php echo $this->session->wish_list_description ?> </h3>
             <hr/>
         </header>
 
         <section id="main-share">
             <input id="toggle-all-share" type="checkbox" hidden/>
             <input id="new-todo-owner" hidden value="<?php echo $this->session->username ?>">
-            <ul id="todo-list-share">
-
-            </ul>
+            <ul id="todo-list-share"></ul>
         </section>
 
         <footer-share style="display: block;">
@@ -28,22 +28,21 @@
     <div class="view">
         <div class="toggle"/>
 
-
-        <button onclick="myFunction('<%- id %>', '<%- title %>', <%- price %>, '<%- priority %>', '<%- url %>')" >Claim</button>
-
         <label class="<%= taken ? 'strike' : '' %>"><%- title %></label> <br/>
         <label class="<%= taken ? 'strike' : '' %>"><%- price %> $</label> <br/>
         <label class="<%= taken ? 'strike' : '' %>"><%- priority === 'must' ? "Must Have" : (priority === 'would' ?
             "Would be Nice to Have" : "If You Can") %></label> <br/>
         <label class="<%= taken ? 'strike' : '' %>"><a href="<%- url %>"><%- url %></a></label>
 
+        <button onclick="myFunction('<%- id %>', '<%- title %>', <%- price %>, '<%- priority %>', '<%- url %>')"
+                class="float-right claim-button <%= taken ? 'hidden-btn' : '' %>">Claim
+        </button>
+
         <a class="destroy"></a>
     </div>
 </script>
 
-<script type="text/template" id="stats-template-share">
-</script>
-
+<script type="text/template" id="stats-template-share"></script>
 
 <script>
     function myFunction(id, title, price, prt, url) {
@@ -53,16 +52,15 @@
                 type: 'PUT',
                 url: 'http://admin:serverCW@localhost/AdvancedServerCW2/api/wish',
                 data: {id: id, title: title, price: price, priority: prt, url: url, taken_by: person, taken: 1},
-                complete: function(data) {
+                complete: function (data) {
                     swal("Successfully claimed wish!", "Thank You!", "success")
-                        .then((value) => {
+                        .then((value) = > {
                         location.reload();
-                });
+                })
+                    ;
                 }
             });
         }
-
-
     }
 </script>
 

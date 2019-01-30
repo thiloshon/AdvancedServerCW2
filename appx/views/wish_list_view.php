@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0">
             <a id="share-btn" class="btn btn-warning my-2 my-sm-0" target="_blank"
-               href="<?php echo base_url(); ?>wish_list/share/<?php echo $encrypt_username  ?>">
+               href="<?php echo base_url(); ?>wish_list/share/<?php echo $encrypt_username ?>">
                 <i class="fa fa-share-alt"></i>
             </a>
             <a class="btn btn-dark my-2 my-sm-0" href="http://localhost/AdvancedServerCW2/auth/logout">Logout</a>
@@ -26,21 +26,21 @@
 
 <div class="container">
     <div id="todoapp">
-
         <header>
             <div id="new-data">
                 <form>
                     <br/>
                     <input id="new-todo-title" class="form-control" type="text" placeholder="What do you wish?"/>
-                    <input id="new-todo-price" class="new-data-item form-control hidden" type="number"  placeholder="How much is it?">
+                    <input id="new-todo-price" class="new-data-item form-control hidden" type="number"
+                           placeholder="How much is it?">
 
                     <select id="new-todo-priority" class="new-data-item form-control hidden">
                         <option value="must">Must Have</option>
-                        <option value="would">Would be Nice to Have </option>
+                        <option value="would">Would be Nice to Have</option>
                         <option value="could">If you can</option>
                     </select>
                     <input id="new-todo-url" class="new-data-item form-control hidden" type="url"
-                           placeholder="Where to get it (URL)?" />
+                           placeholder="Where to get it (URL)?"/>
                     <input id="new-todo-owner" class="hidden" value="<?php echo $this->session->username ?>">
                 </form>
             </div>
@@ -52,7 +52,6 @@
             <ul id="todo-list-done"></ul>
         </section>
 
-
     </div>
 </div>
 
@@ -61,7 +60,8 @@
     <div class="view shadow">
 
         <div class="item-image-overlay">
-            <img src="https://api.letsvalidate.com/v1/thumbs/?url=<%- url %>" class="img-thumbnail rounded float-right item-image shadow "/>
+            <img src="https://api.letsvalidate.com/v1/thumbs/?url=<%- url %>"
+                 class="img-thumbnail rounded float-right item-image shadow "/>
         </div>
 
         <input id="list-item<%- css_val %>" class="toggle" type="checkbox"
@@ -70,12 +70,11 @@
         <label for="list-item<%- css_val %>"></label>
         <label><%- title %></label> <br/>
         <label><%- price %> $</label> <br/>
-        <label><%- priority === 'must' ? "Must Have" : (
-            priority === 'would' ? "Would be Nice to Have" : "If You Can") %>
+        <label>
+            <%- priority === 'must' ? "Must Have" : ( priority === 'would' ? "Would be Nice to Have" : "If You Can") %>
         </label> <br/>
         <label><a href="<%- url %>"><%- url %></a></label> <br/>
-
-        <label class="claimed-by"><%= taken == '' ? '' : 'Claimed By: '  %> <%- taken_by %></label>
+        <label class="claimed-by"><%= taken == '' ? '' : 'Claimed By: ' %> <%- taken_by %></label>
 
         <a class="destroy"></a>
     </div>
@@ -89,7 +88,6 @@
 </script>
 
 <script type="text/template" id="stats-template"></script>
-
 <script type="text/template" id="user-template">
     <div>
         <p><%- wish_list_name %> </p>

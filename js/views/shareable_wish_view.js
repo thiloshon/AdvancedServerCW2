@@ -1,6 +1,5 @@
 var app = app || {};
 
-
 app.ShareView = Backbone.View.extend({
     tagName: "li",
     template: _.template($("#item-template-share").html()),

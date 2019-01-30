@@ -132,6 +132,4 @@ class Api extends \Restserver\Libraries\REST_Controller
             $this->response("Failed", 500);
         }
     }
-
-
 }

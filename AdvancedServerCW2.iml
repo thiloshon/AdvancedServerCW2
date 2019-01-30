@@ -15,5 +15,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="sweetalert" level="application" />
   </component>
 </module>

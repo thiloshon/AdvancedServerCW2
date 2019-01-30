@@ -25,7 +25,7 @@ class Authlib
             return 'Missing Fields';
         }
 
-        if(strlen($pwd) < 7){
+        if (strlen($pwd) < 7) {
             return "Password too short!";
 
         }

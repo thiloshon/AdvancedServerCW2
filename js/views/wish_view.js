@@ -1,6 +1,5 @@
 var app = app || {};
 
-
 app.WishView = Backbone.View.extend({
     tagName: "li",
     template: _.template($("#item-template").html()),

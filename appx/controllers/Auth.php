@@ -73,7 +73,8 @@ class Auth extends CI_Controller
     /**
      * Sign-out process
      */
-    public function logout(){
+    public function logout()
+    {
         $this->session->sess_destroy();
         redirect('/');
     }
