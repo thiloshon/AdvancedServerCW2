@@ -33,9 +33,7 @@ class Wish_model extends CI_Model
     public function add_wish($data)
     {
         if ($this->db->insert('wishes', $data)) {
-            return true;
-        } else {
-            return false;
+            return $this->db->insert_id();;
         }
     }
 

@@ -53,7 +53,7 @@ class Api extends \Restserver\Libraries\REST_Controller
             if ($result === 0) {
                 $this->response("Wish information could not be saved. Try again.", 500);
             } else {
-                $this->response("success", 200);
+                $this->response(array('id' => $this->db->insert_id()), 200);
             }
         }
     }
@@ -71,8 +71,6 @@ class Api extends \Restserver\Libraries\REST_Controller
         $wish_id = $this->put('id');
         $done = $this->put('taken');
         $done_by = $this->put('taken_by');
-
-        echo $done;
 
         if (!$title || !$price || !$url || !$priority || !$wish_id) {
             $this->response("Enter complete wish information to update", 400);

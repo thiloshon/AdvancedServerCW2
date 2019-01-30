@@ -54,7 +54,7 @@
                 data: {id: id, title: title, price: price, priority: prt, url: url, taken_by: person, taken: 1},
                 complete: function (data) {
                     swal("Successfully claimed wish!", "Thank You!", "success")
-                        .then((value) = > {
+                        .then((value) => {
                         location.reload();
                 })
                     ;
