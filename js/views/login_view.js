@@ -3,12 +3,6 @@ var app = app || {};
 app.LoginView = Backbone.View.extend({
     el: $("#login_panel"),
 
-    initialize: function () {
-    },
-
-    render: function () {
-    },
-
     events: {
         "click #login-submit": "login"
     },
@@ -29,8 +23,8 @@ app.LoginView = Backbone.View.extend({
                 success: function () {
                     window.location.replace('http://localhost/AdvancedServerCW2/wish_list');
                 },
-                error: (function (e) {
-                    swal("Incorrect Password!", "Please try again!", "error");
+                error: (function () {
+                    swal("Incorrect Username/Password!", "Please try again!", "error");
                 })
             });
         }

@@ -8,7 +8,8 @@ app.Wish = Backbone.Model.extend({
             price: -9,
             priority: "could",
             taken: false,
-            owner_id: "default_username"
+            owner_id: "default_username",
+            css_val: Math.floor(Math.random() * 10000000) + 1
         };
     },
 

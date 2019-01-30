@@ -1,10 +1,10 @@
 <div class="container">
     <div id="shareWish">
         <header>
-            <span class="row"><h1 class="display-3"><?php echo $this->session->wishlist ?></h1>  <p
+            <span class="row"><h1 class="display-3"><?php echo $this->session->wish_list_name ?></h1>  <p
                         class="lead"><?php echo $this->session->name ?></p></span>
 
-            <h3>                <?php echo $this->session->description ?>            </h3>
+            <h3>                <?php echo $this->session->wish_list_description ?>            </h3>
             <hr/>
         </header>
 

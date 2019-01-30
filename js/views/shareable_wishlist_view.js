@@ -13,7 +13,12 @@ app.ShareAppView = Backbone.View.extend({
         this.footer = this.$("footer-share");
         this.main = $("#main-share");
 
-        app.wish_list_share.fetch({data: $.param({owner_id: this.$("#new-todo-owner").val()})});
+        app.wish_list_share.fetch({
+            data: $.param({owner_id: this.$("#new-todo-owner").val()          }),
+            error: (function () {
+                swal("Error occured!", "Please try again!", "error");
+            })
+        });
 
     },
 

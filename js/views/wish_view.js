@@ -40,7 +40,7 @@ app.WishView = Backbone.View.extend({
     },
 
     /**
-     * adding element while closing text fileds.
+     * adding element while closing text fields.
      */
     close: function () {
         var arr = [];
@@ -63,7 +63,7 @@ app.WishView = Backbone.View.extend({
 
     clear: function () {
         this.model.destroy({
-            success: function(model, response){
+            success: function(){
                 swal("Deleted wish!",'', "success");
             }
         });

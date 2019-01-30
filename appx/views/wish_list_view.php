@@ -64,10 +64,10 @@
             <img src="https://api.letsvalidate.com/v1/thumbs/?url=<%- url %>" class="img-thumbnail rounded float-right item-image shadow "/>
         </div>
 
-        <input id="list-item<%- url %>" class="toggle" type="checkbox"
+        <input id="list-item<%- css_val %>" class="toggle" type="checkbox"
                style="display: none;" <%= taken ? 'checked="checked"' : '' %> />
 
-        <label for="list-item<%- url %>"></label>
+        <label for="list-item<%- css_val %>"></label>
         <label><%- title %></label> <br/>
         <label><%- price %> $</label> <br/>
         <label><%- priority === 'must' ? "Must Have" : (
