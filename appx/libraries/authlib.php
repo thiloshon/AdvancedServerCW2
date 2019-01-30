@@ -25,6 +25,11 @@ class Authlib
             return 'Missing Fields';
         }
 
+        if(strlen($pwd) < 7){
+            return "Password too short!";
+
+        }
+
         if ($conf_pwd != $pwd) {
             return "Passwords do not match";
         }
