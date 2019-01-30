@@ -18,7 +18,7 @@ class User_model extends CI_Model
     {
         $res = $this->db->get_where('users', array('username' => $username));
         if ($res->num_rows() > 0) {
-            return "username already exists";
+            return "Username already exists";
         }
 
         $hashpwd = sha1($password);

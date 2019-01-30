@@ -25,8 +25,13 @@ app.AppView = Backbone.View.extend({
         this.footer = this.$("footer");
         this.main = $("#main");
 
+        // --------- FETCH HERE -------------
         app.wish_list.fetch({
             data: $.param({owner_id: this.$("#new-todo-owner").val()})
+        }, {
+            error: function(){
+                swal("Getting data Erred", 'Please try later', "error");
+            }
         });
 
     },
@@ -100,6 +105,7 @@ app.AppView = Backbone.View.extend({
             swal("Missing Values!", "Please fill all fields!", "error");
 
         } else {
+            // --------- CREATE HERE -------------
             app.wish_list.create({
                 title: this.input.val(),
                 price: this.$("#new-todo-price").val(),
@@ -107,6 +113,10 @@ app.AppView = Backbone.View.extend({
                 url: this.$("#new-todo-url").val(),
                 owner_id: this.$("#new-todo-owner").val(),
                 priorityVal: (temp_priority === "would" ? 2 : (temp_priority === "could" ? 1 : 3))
+            }, {
+                error: function(){
+                    swal("Creation Erred",'Please try later', "error");
+                }
             });
 
             this.input.val("");

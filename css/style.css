@@ -310,3 +310,8 @@ input[type=checkbox]:checked + label:before {
 .swal-footer {
      text-align: center;
 }
+
+.claimed-by{
+    text-decoration: none !important;
+    color: #bd2130 !important;
+}

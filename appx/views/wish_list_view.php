@@ -73,7 +73,9 @@
         <label><%- priority === 'must' ? "Must Have" : (
             priority === 'would' ? "Would be Nice to Have" : "If You Can") %>
         </label> <br/>
-        <label><a href="<%- url %>"><%- url %></a></label>
+        <label><a href="<%- url %>"><%- url %></a></label> <br/>
+
+        <label class="claimed-by"><%= taken == '' ? '' : 'Claimed By: '  %> <%- taken_by %></label>
 
         <a class="destroy"></a>
     </div>

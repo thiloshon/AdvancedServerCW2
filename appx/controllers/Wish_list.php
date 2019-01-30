@@ -26,7 +26,7 @@ class Wish_list extends CI_Controller
     /**
      * The sharing wishlist controller
      *
-     * @param $identifier Username to view just sharable page
+     * @param $identifier identifier to view just sharable page
      */
     public function share($identifier)
     {

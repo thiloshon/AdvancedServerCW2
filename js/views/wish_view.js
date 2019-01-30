@@ -51,7 +51,13 @@ app.WishView = Backbone.View.extend({
         if (!arr[0]) {
             this.clear();
         } else {
-            this.model.save({title: arr[0], price: arr[1], priority: arr[2], url: arr[3]});
+            // --------- SAVE HERE -------------
+            this.model.save({title: arr[0], price: arr[1], priority: arr[2], url: arr[3]},{
+                error: function(){
+                    swal("Update Erred",'', "error");
+                }
+            });
+
             this.$el.removeClass("editing");
             this.$el.find(".edit_box").removeClass("editing");
         }
@@ -62,9 +68,10 @@ app.WishView = Backbone.View.extend({
     },
 
     clear: function () {
+        // --------- DESTROY HERE -------------
         this.model.destroy({
-            success: function(){
-                swal("Deleted wish!",'', "success");
+            error: function(){
+                swal("Delete Erred",'', "error");
             }
         });
 

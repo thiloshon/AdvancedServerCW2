@@ -4,6 +4,10 @@ app.ShareAppView = Backbone.View.extend({
     el: $("#shareWish"),
     statsTemplate: _.template($("#stats-template-share").html()),
 
+    events: {
+        "click #claim-123": "claimTrigger"
+    },
+
     initialize: function () {
         this.allCheckbox = this.$("#toggle-all-share")[0];
 
@@ -13,6 +17,7 @@ app.ShareAppView = Backbone.View.extend({
         this.footer = this.$("footer-share");
         this.main = $("#main-share");
 
+        // --------- FETCH HERE -------------
         app.wish_list_share.fetch({
             data: $.param({owner_id: this.$("#new-todo-owner").val()          }),
             error: (function () {
@@ -41,5 +46,9 @@ app.ShareAppView = Backbone.View.extend({
     addOne: function (todo) {
         var view = new app.ShareView({model: todo});
         this.$("#todo-list-share").append(view.render().el);
+    },
+
+    claimTrigger: function (r) {
+        console.log("asdf");
     }
 });
